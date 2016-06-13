@@ -1,0 +1,105 @@
+aarhus elixir
+
+$ brew install erlang
+$ brew install elixir
+mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
+
+get and install elixit
+get and install phoenix
+get and install postgresql
+
+$ mix phoenix.new aarhus_elixir
+$ [Y]
+read text in console
+
+open project in editor
+
+edit
+config/dev.exs
+
+Line 38 and 39 database username
+
+$ mix ecto.create (take a little while first time)
+$ mix phoenix.server
+read text in console
+
+https://hexdocs.pm/phoenix/Mix.Tasks.Phoenix.Gen.Html.html
+
+$ mix phoenix.gen.html User users name:string email:string password_hash:string
+read test in console
+
+open
+web/router
+paste in on line: 20
+resources "/users", UserController
+
+$ mix ecto.migrate
+
+restart server
+cmd c x 2
+
+$ mix phoenix.server
+
+lets change root to users/
+
+lets walk through folders
+
+open web/models/user.exs
+look at schema
+
+lets through in apex
+open mix.exs
+add  {:apex, "~>0.3.5"}, on line 40
+stop server
+$ mix deps.get
+start server
+
+web/models/user.exs
+add Apex.ap params on line 20
+create a user watch terminal
+remove
+web/controllers/user_controller.ex
+line 20:
+add Apex.ap changeset
+create user
+create a user watch terminal
+
+open user model
+add to schema
+field :password, :string, virtual: true
+field :password_confirmation, :string, virtual: true
+
+update web/templates/user/form
+
+
+  <div class="form-group">
+    <%= label f, :password, class: "control-label" %>
+    <%= text_input f, :password, class: "form-control" %>
+    <%= error_tag f, :password %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :password_confirmation, class: "control-label" %>
+    <%= text_input f, :password_confirmation, class: "form-control" %>
+    <%= error_tag f, :password_confirmation %>
+  </div>
+
+Notice hot loading
+open user model
+check required fields
+
+lets make the hash
+open mix.exs
+add {:comeonin, "~> 2.0"}
+$ mix deps.get
+restart server
+
+open user model
+
+
+|> cast(params, ~w(password password_confirmation email name), @optional_fields)
+|> validate_length(:password, min: 6, max: 100)
+|> validate_confirmation(:password, message: "does not match password")
+|> put_pass_hash()
+
+
