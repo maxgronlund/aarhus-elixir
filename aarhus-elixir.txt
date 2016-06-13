@@ -13,11 +13,7 @@ $ [Y]
 read text in console
 
 open project in editor
-
-edit
-config/dev.exs
-
-Line 38 and 39 database username
+edit file config/dev.exs line 38 and 39 database username
 
 $ mix ecto.create (take a little while first time)
 $ mix phoenix.server

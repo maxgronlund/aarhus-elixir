@@ -12,8 +12,8 @@ config :logger, level: :warn
 # Configure your database
 config :aarhus_elixir, AarhusElixir.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "maxgronlund",
+  password: "",
   database: "aarhus_elixir_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
